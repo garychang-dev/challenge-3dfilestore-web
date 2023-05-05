@@ -48,10 +48,10 @@ export async function renameFile(fileId: string, newName: string): Promise<ObjFi
 
 //-----------------------------------------------------------------------------
 export async function deleteFile(fileId: string): Promise<void> {
-  // TODO: Replace theses arguments with the correct ones
   await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'DELETE',
+    url: '/deleteFile',
+    data: { fileId },
   });
 }
 
