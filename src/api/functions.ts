@@ -74,7 +74,9 @@ export async function uploadFile(data: FormData): Promise<ObjFile> {
 
 //-----------------------------------------------------------------------------
 export function transformFile(fileId: string, scale: Vector3, offset: Vector3): void {
-  // TODO: Replace this value with the correct one
-  const transformUrl = '<replace-me>';
+  const transformUrl =
+    `${apiClient.defaults.baseURL}/transformFile?fileId=${fileId}` +
+    `&scaleX=${scale.x}&scaleY=${scale.y}&scaleZ=${scale.z}` +
+    `&offsetX=${offset.x}&offsetY=${offset.y}&offsetZ=${offset.z}`;
   window.open(transformUrl, '_blank');
 }
