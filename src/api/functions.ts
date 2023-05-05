@@ -28,10 +28,10 @@ export async function listFiles(): Promise<ObjFile[]> {
 
 //-----------------------------------------------------------------------------
 export async function getFile(fileId: string): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'GET',
+    url: '/getFile',
+    data: { fileId },
   });
   return res.data;
 }
