@@ -38,10 +38,10 @@ export async function getFile(fileId: string): Promise<ObjFile> {
 
 //-----------------------------------------------------------------------------
 export async function renameFile(fileId: string, newName: string): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'PUT',
+    url: '/renameFile',
+    data: { fileId, newName },
   });
   return res.data;
 }
