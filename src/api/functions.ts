@@ -19,63 +19,64 @@ const apiClient = axios.create({ baseURL: 'http://localhost:3333' });
 
 //-----------------------------------------------------------------------------
 export async function listFiles(): Promise<ObjFile[]> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile[]>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'GET',
+    url: '/listFiles',
   });
   return res.data;
 }
 
 //-----------------------------------------------------------------------------
 export async function getFile(fileId: string): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'GET',
+    url: '/getFile',
+    data: { fileId },
   });
   return res.data;
 }
 
 //-----------------------------------------------------------------------------
 export async function renameFile(fileId: string, newName: string): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'PUT',
+    url: '/renameFile',
+    data: { fileId, newName },
   });
   return res.data;
 }
 
 //-----------------------------------------------------------------------------
 export async function deleteFile(fileId: string): Promise<void> {
-  // TODO: Replace theses arguments with the correct ones
   await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'DELETE',
+    url: '/deleteFile',
+    data: { fileId },
   });
 }
 
 //-----------------------------------------------------------------------------
 export function downloadFile(fileId: string): void {
-  // TODO: Replace this value with the correct one
-  const downloadUrl = '<replace-me>';
+  const downloadUrl = `${apiClient.defaults.baseURL}/downloadFile?fileId=${fileId}`;
   window.open(downloadUrl, '_blank');
 }
 
 //-----------------------------------------------------------------------------
 export async function uploadFile(data: FormData): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'POST',
+    url: '/uploadFile',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    data,
   });
   return res.data;
 }
 
 //-----------------------------------------------------------------------------
 export function transformFile(fileId: string, scale: Vector3, offset: Vector3): void {
-  // TODO: Replace this value with the correct one
-  const transformUrl = '<replace-me>';
+  const transformUrl =
+    `${apiClient.defaults.baseURL}/transformFile?fileId=${fileId}` +
+    `&scaleX=${scale.x}&scaleY=${scale.y}&scaleZ=${scale.z}` +
+    `&offsetX=${offset.x}&offsetY=${offset.y}&offsetZ=${offset.z}`;
   window.open(transformUrl, '_blank');
 }
