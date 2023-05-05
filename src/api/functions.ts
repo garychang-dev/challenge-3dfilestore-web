@@ -57,8 +57,7 @@ export async function deleteFile(fileId: string): Promise<void> {
 
 //-----------------------------------------------------------------------------
 export function downloadFile(fileId: string): void {
-  // TODO: Replace this value with the correct one
-  const downloadUrl = '<replace-me>';
+  const downloadUrl = `${apiClient.defaults.baseURL}/downloadFile?fileId=${fileId}`;
   window.open(downloadUrl, '_blank');
 }
 
