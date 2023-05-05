@@ -64,10 +64,11 @@ export function downloadFile(fileId: string): void {
 
 //-----------------------------------------------------------------------------
 export async function uploadFile(data: FormData): Promise<ObjFile> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'POST',
+    url: '/uploadFile',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    data,
   });
   return res.data;
 }
