@@ -19,10 +19,9 @@ const apiClient = axios.create({ baseURL: 'http://localhost:3333' });
 
 //-----------------------------------------------------------------------------
 export async function listFiles(): Promise<ObjFile[]> {
-  // TODO: Replace theses arguments with the correct ones
   const res = await apiClient.request<ObjFile[]>({
-    method: '<replace-me>',
-    url: '<replace-me>',
+    method: 'GET',
+    url: '/listFiles',
   });
   return res.data;
 }
