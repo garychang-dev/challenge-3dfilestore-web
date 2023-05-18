@@ -21,7 +21,7 @@ const apiClient = axios.create({ baseURL: 'http://localhost:3333' });
 export async function listFiles(): Promise<ObjFile[]> {
   const res = await apiClient.request<ObjFile[]>({
     method: 'GET',
-    url: '/listFiles',
+    url: '/files',
   });
   return res.data;
 }
@@ -30,8 +30,7 @@ export async function listFiles(): Promise<ObjFile[]> {
 export async function getFile(fileId: string): Promise<ObjFile> {
   const res = await apiClient.request<ObjFile>({
     method: 'GET',
-    url: '/getFile',
-    data: { fileId },
+    url: `/files/{${fileId}`,
   });
   return res.data;
 }
@@ -40,7 +39,7 @@ export async function getFile(fileId: string): Promise<ObjFile> {
 export async function renameFile(fileId: string, newName: string): Promise<ObjFile> {
   const res = await apiClient.request<ObjFile>({
     method: 'PUT',
-    url: '/renameFile',
+    url: '/files/',
     data: { fileId, newName },
   });
   return res.data;
@@ -50,14 +49,14 @@ export async function renameFile(fileId: string, newName: string): Promise<ObjFi
 export async function deleteFile(fileId: string): Promise<void> {
   await apiClient.request<ObjFile>({
     method: 'DELETE',
-    url: '/deleteFile',
+    url: '/files/',
     data: { fileId },
   });
 }
 
 //-----------------------------------------------------------------------------
 export function downloadFile(fileId: string): void {
-  const downloadUrl = `${apiClient.defaults.baseURL}/downloadFile?fileId=${fileId}`;
+  const downloadUrl = `${apiClient.defaults.baseURL}/files/${fileId}`;
   window.open(downloadUrl, '_blank');
 }
 
@@ -65,7 +64,7 @@ export function downloadFile(fileId: string): void {
 export async function uploadFile(data: FormData): Promise<ObjFile> {
   const res = await apiClient.request<ObjFile>({
     method: 'POST',
-    url: '/uploadFile',
+    url: '/files',
     headers: { 'Content-Type': 'multipart/form-data' },
     data,
   });
@@ -74,9 +73,6 @@ export async function uploadFile(data: FormData): Promise<ObjFile> {
 
 //-----------------------------------------------------------------------------
 export function transformFile(fileId: string, scale: Vector3, offset: Vector3): void {
-  const transformUrl =
-    `${apiClient.defaults.baseURL}/transformFile?fileId=${fileId}` +
-    `&scaleX=${scale.x}&scaleY=${scale.y}&scaleZ=${scale.z}` +
-    `&offsetX=${offset.x}&offsetY=${offset.y}&offsetZ=${offset.z}`;
+  const transformUrl = `${apiClient.defaults.baseURL}/files/transform/${fileId}/${scale.x}/${scale.y}/${scale.z}/${offset.x}/${offset.y}/${offset.z}`;
   window.open(transformUrl, '_blank');
 }
